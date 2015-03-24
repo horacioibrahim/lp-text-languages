@@ -1,0 +1,39 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../lp-ugettext/lp-ugettext.html">
+
+<polymer-element name="lp-text-languages" attributes="default">
+  <template>
+    <lp-ugettext></lp-ugettext>
+    {{textTranslated}}
+  </template>
+  <script>
+    (function () {
+      Polymer({
+        // define element prototype here
+        publish: {
+          textTranslated: '',
+          default: 'en-US', // put in DECLARATIVE in HTML
+        },
+        ready: function() {
+          this.setLanguage();
+        },
+        fetchAttributes: function() {
+            return this.attributes;
+        },
+        getLanguage: function() {
+          var ugettext = document.querySelector('lp-ugettext');
+          return ugettext.language;
+        },
+        setLanguage: function() {
+            var attrs = this.fetchAttributes();
+            var currentLanguae = this.getLanguage();
+            if (currentLanguae in attrs) {
+              this.textTranslated = attrs[currentLanguae].value;  
+            } else {
+              this.textTranslated = attrs[this.default].value;  
+            }
+        }
+      });
+    })();
+  </script>
+</polymer-element>

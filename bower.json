@@ -1,0 +1,28 @@
+{
+  "name": "lp-text-languages",
+  "version": "0.0.1",
+  "authors": [
+    "Horacio Ibrahim <horacioibrahim@gmail.com>"
+  ],
+  "description": "lp-text-langauge provides a declarative way with HTML attributes to show texts translated",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "lp-text-languages"
+  ],
+  "main": "lp-text-languages.html",
+  "license": "MIT",
+  "homepage": "https://github.com/horacioibrahim/lp-text-languages/",
+  "ignore": [
+    "/.*",
+    "/tests/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.5.4",
+    "webcomponentsjs": "webcomponentsjs"
+  },
+  "devDependencies": {
+    "web-component-tester": "*"
+  }
+}
