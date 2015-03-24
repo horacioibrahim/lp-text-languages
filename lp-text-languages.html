@@ -21,27 +21,12 @@ translated.
   <template>
     <lp-ugettext id="ugettext"></lp-ugettext>
 
-    <!-- workaround to show content -->
-    <span id="original" style="display: {{displayOriginal}};"><content></content></span>
-    <span id="translated" style="display: {{displayTranslated}};">{{textTranslated}}</span>
+    <content></content>
 
   </template>
   <script>
     (function () {
       Polymer({
-        /**
-        * `Nome`
-        *
-        */
-        // define element prototype here
-        displayOriginal: 'inline',
-        displayTranslated: 'none',
-        publish: {
-          textTranslated: '',
-          hide: 'none',
-          show: 'inline',
-          default: 'en-US', // put in DECLARATIVE in HTML
-        },
         ready: function() {
           this.setLanguage();
         },
@@ -56,13 +41,8 @@ translated.
             var attrs = this.fetchAttributes();
             var currentLanguage = this.getCurrentLanguage();
             if (currentLanguage in attrs) {
-              this.textTranslated = attrs[currentLanguage].value;
-              this.changeSpanVisible();
+              this.innerHTML = attrs[currentLanguage].value;
             }
-        },
-        changeSpanVisible: function() {
-          this.displayOriginal = this.hide;
-          this.displayTranslated = this.show;
         }
       });
     })();
