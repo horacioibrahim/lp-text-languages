@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^0.5.4",
-    "lp-ugettext": "lp-ugettext"
+    "lp-ugettext": "lp-ugettext#0.0.5"
   },
   "devDependencies": {
     "web-component-tester": "*"
