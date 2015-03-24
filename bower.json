@@ -1,6 +1,6 @@
 {
   "name": "lp-text-languages",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "authors": [
     "Horacio Ibrahim <horacioibrahim@gmail.com>"
   ],
@@ -19,8 +19,8 @@
     "/tests/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^0.5.4",
-    "webcomponentsjs": "webcomponentsjs"
+    "polymer": "Polymer/polymer",
+    "lp-ugettext": "lp-ugettext#^0.0.3"
   },
   "devDependencies": {
     "web-component-tester": "*"

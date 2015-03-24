@@ -5,17 +5,32 @@
   <title>lp-ugettext Demo</title>
 
   <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
-  <link rel="import" href="lp-text-langauges.html">
+  <link rel="import" href="../bower_components/lp-ugettext/lp-ugettext.html">
+  <link rel="import" href="lp-text-languages.html">
 
 </head>
 <body unresolved>
 
       <!-- The result depends of the language preferences configured in browser.
       -->
-      <lp-text-languages
-        pt-br="Um texto escrito nos seu idioma preferido!" >
-        A default text wrote in your preference language!
-      </lp-text-languages>
+      <p><strong>My current browser language:</strong></p>
+      <div id="mylanguage"></div>
+
+      <p><strong>Your content below:</strong>
+        <lp-text-languages
+          pt-br="Um texto escrito no seu idioma preferido!" >
+          A default text wrote in your preference language!
+        </lp-text-languages>
+      </p>
+
+      <script>
+       window.addEventListener('polymer-ready', function(e) {
+         var lptl = document.querySelector('lp-text-languages');
+         var language = lptl.$.ugettext.language;
+         var mylanguage = document.querySelector('#mylanguage');
+         mylanguage.innerHTML = language;
+       });
+       </script>
 
 </body>
 </html>

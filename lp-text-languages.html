@@ -1,17 +1,45 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../lp-ugettext/lp-ugettext.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/lp-ugettext/lp-ugettext.html">
 
-<polymer-element name="lp-text-languages" attributes="default">
+<!--
+
+`lp-text-languages` provides a declarative way with HTML attributes to show texts
+translated.
+
+##### Example
+
+      <lp-text-languages
+        pt-br="Um texto escrito no seu idioma preferido!" >
+        A default text wrote in your preference language!
+      </lp-text-languages>
+
+@element lp-text-languages
+@status beta
+@homepage http://github.com/horacioibrahim/lp-text-languages
+-->
+<polymer-element name="lp-text-languages">
   <template>
-    <lp-ugettext></lp-ugettext>
-    {{textTranslated}}
+    <lp-ugettext id="ugettext"></lp-ugettext>
+
+    <!-- workaround to show content -->
+    <span id="original" style="display: {{displayOriginal}};"><content></content></span>
+    <span id="translated" style="display: {{displayTranslated}};">{{textTranslated}}</span>
+
   </template>
   <script>
     (function () {
       Polymer({
+        /**
+        * `Nome`
+        *
+        */
         // define element prototype here
+        displayOriginal: 'inline',
+        displayTranslated: 'none',
         publish: {
           textTranslated: '',
+          hide: 'none',
+          show: 'inline',
           default: 'en-US', // put in DECLARATIVE in HTML
         },
         ready: function() {
@@ -20,18 +48,21 @@
         fetchAttributes: function() {
             return this.attributes;
         },
-        getLanguage: function() {
-          var ugettext = document.querySelector('lp-ugettext');
+        getCurrentLanguage: function() {
+          var ugettext = this.$.ugettext;
           return ugettext.language;
         },
         setLanguage: function() {
             var attrs = this.fetchAttributes();
-            var currentLanguae = this.getLanguage();
-            if (currentLanguae in attrs) {
-              this.textTranslated = attrs[currentLanguae].value;  
-            } else {
-              this.textTranslated = attrs[this.default].value;  
+            var currentLanguage = this.getCurrentLanguage();
+            if (currentLanguage in attrs) {
+              this.textTranslated = attrs[currentLanguage].value;
+              this.changeSpanVisible();
             }
+        },
+        changeSpanVisible: function() {
+          this.displayOriginal = this.hide;
+          this.displayTranslated = this.show;
         }
       });
     })();
