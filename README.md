@@ -1,7 +1,7 @@
-lp-text-langauge
+lp-text-language
 ================
 
-  lp-text-langauge provides a declarative way with HTML attributes to show texts
+  lp-text-language provides a declarative way with HTML attributes to show texts
   translated.
 
 Usage
